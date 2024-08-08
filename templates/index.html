@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Generator</title>
+    <script>
+        async function generateImage() {
+            const response = await fetch('/api/generate');
+            const data = await response.json();
+            if (response.ok) {
+                document.getElementById('image').src = data.image_path;
+            } else {
+                alert(data.error);
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Generate a Random Game Image</h1>
+    <button onclick="generateImage()">Generate Image</button>
+    <br><br>
+    <img id="image" src="" alt="Generated Image" style="max-width: 100%; height: auto;">
+</body>
+</html>
